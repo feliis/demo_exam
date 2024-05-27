@@ -14,15 +14,39 @@ def printUsers():
     cur.execute('SELECT * FROM users')
     all_users = cur.fetchall()
     cur.close()
-    conn.close()
-    print(all_users)
+
+    return all_users
+
+def create_new_user(name, sex, role, password):
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(f"""SELECT * FROM users WHERE name='{name}'""")
+    user = cur.fetchone()
+
+    if user:
+        return False
+    else:
+        cursor = conn.cursor()
+        cursor.execute(f"""INSERT INTO users (name, sex, role, password) VALUES ('{name}', '{sex}', '{role}', '{password}') """)
+        conn.commit()
+        cursor.close()
+
+        return True
+
+def remove_user(id):
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(f"""DELETE FROM users where id='{id}'""")
+    conn.commit()
+    cur.close()
+
 
 def getUser(name):
     cur = conn.cursor(cursor_factory=RealDictCursor)
     cur.execute(f"""SELECT * FROM users WHERE name='{name}'""")
     user = cur.fetchone()
+    cur.close()
     return user
 
 if __name__ == "__main__":
-    print(getUser('Georg'))
+   # print(getUser('Georg'))
+    print(create_new_user('sfaf', True, 'bigBoy', 'ddddd'))
 
