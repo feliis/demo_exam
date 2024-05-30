@@ -1,4 +1,5 @@
 import psycopg2
+from psycopg2._psycopg import cursor
 from psycopg2.extras import RealDictCursor
 
 conn = psycopg2.connect(
@@ -11,11 +12,25 @@ conn = psycopg2.connect(
 
 def printUsers():
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    cur.execute('SELECT * FROM users')
+    cur.execute(f"""SELECT users.id, users.name, users.password, users.birthday, users.sex, roles.name as role 
+                        FROM users 
+                        INNER JOIN roles
+                        ON users.role = roles.id""")
     all_users = cur.fetchall()
     cur.close()
 
     return all_users
+
+def get_info_user(id):
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(f"""SELECT users.id, users.name, users.password, users.birthday, users.sex, roles.name as role 
+                        FROM users 
+                        INNER JOIN roles
+                        ON users.role = roles.id
+                        WHERE users.id='{id}'""")
+    user = cur.fetchone()
+    cur.close()
+    return user
 
 def create_new_user(name, sex, role, password):
     cur = conn.cursor(cursor_factory=RealDictCursor)
@@ -38,10 +53,28 @@ def remove_user(id):
     conn.commit()
     cur.close()
 
+def update_user(id, name, sex, role, password):
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(f"""UPDATE users
+                    SET name='{name}', sex='{sex}', role='{role}', password='{password}'
+                    WHERE id='{id}'""")
+    conn.commit()
+    cursor.close()
+
+def get_roles():
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    cur.execute(f"""SELECT * FROM roles""")
+    all_roles = cur.fetchall()
+    cur.close()
+    return all_roles
 
 def getUser(name):
     cur = conn.cursor(cursor_factory=RealDictCursor)
-    cur.execute(f"""SELECT * FROM users WHERE name='{name}'""")
+    cur.execute(f"""SELECT users.id, users.name, users.password, users.birthday, users.sex, roles.name as role 
+                        FROM users 
+                        INNER JOIN roles
+                        ON users.role = roles.id
+                        WHERE users.name='{name}'""")
     user = cur.fetchone()
     cur.close()
     return user

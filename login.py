@@ -33,7 +33,6 @@ class Ui_MainWindow(object):
         self.passwordField.setGeometry(QtCore.QRect(230, 110, 113, 20))
         self.passwordField.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordField.setObjectName("passwordField")
-        self.checkbox = QtWidgets.QCheckBox(self.centralwidget)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CreateUserWindow</class>
- <widget class="QMainWindow" name="CreateUserWindow">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>296</width>
+    <width>404</width>
     <height>315</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Создание пользователя</string>
+   <string>Редактирование пользователя</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
@@ -102,14 +102,27 @@
    <widget class="QPushButton" name="saveButton">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>240</y>
+      <x>200</x>
+      <y>230</y>
       <width>161</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>Создаь пользователя</string>
+     <string>Сохранить изменения</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeButton">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>230</y>
+      <width>91</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Удалить</string>
     </property>
    </widget>
    <widget class="QComboBox" name="rolesComboBox">

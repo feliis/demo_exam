@@ -32,7 +32,7 @@ class Ui_Main(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "tableScreen"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "admin"))
         self.pushButton.setText(_translate("MainWindow", "buba"))
 
 
