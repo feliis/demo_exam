@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_CreateUser(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(281, 353)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_CreateUserWindow(object):
+    def setupUi(self, CreateUserWindow):
+        CreateUserWindow.setObjectName("CreateUserWindow")
+        CreateUserWindow.resize(296, 315)
+        self.centralwidget = QtWidgets.QWidget(CreateUserWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(60, 60, 47, 13))
@@ -32,9 +32,6 @@ class Ui_CreateUser(object):
         self.nameField = QtWidgets.QLineEdit(self.centralwidget)
         self.nameField.setGeometry(QtCore.QRect(110, 60, 113, 20))
         self.nameField.setObjectName("nameField")
-        self.roleField = QtWidgets.QLineEdit(self.centralwidget)
-        self.roleField.setGeometry(QtCore.QRect(110, 140, 113, 20))
-        self.roleField.setObjectName("roleField")
         self.passwordField = QtWidgets.QLineEdit(self.centralwidget)
         self.passwordField.setGeometry(QtCore.QRect(110, 180, 113, 20))
         self.passwordField.setObjectName("passwordField")
@@ -42,21 +39,32 @@ class Ui_CreateUser(object):
         self.sexCheckBox.setGeometry(QtCore.QRect(110, 100, 70, 17))
         self.sexCheckBox.setText("")
         self.sexCheckBox.setObjectName("sexCheckBox")
-        self.createUserButton = QtWidgets.QPushButton(self.centralwidget)
-        self.createUserButton.setGeometry(QtCore.QRect(60, 250, 161, 23))
-        self.createUserButton.setObjectName("createUserButton")
-        MainWindow.setCentralWidget(self.centralwidget)
+        self.saveButton = QtWidgets.QPushButton(self.centralwidget)
+        self.saveButton.setGeometry(QtCore.QRect(60, 240, 161, 23))
+        self.saveButton.setObjectName("saveButton")
+        self.rolesComboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.rolesComboBox.setGeometry(QtCore.QRect(110, 130, 69, 22))
+        self.rolesComboBox.setObjectName("rolesComboBox")
+        CreateUserWindow.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(CreateUserWindow)
+        QtCore.QMetaObject.connectSlotsByName(CreateUserWindow)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, CreateUserWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Создание пользователя"))
-        self.label.setText(_translate("MainWindow", "Имя:"))
-        self.label_2.setText(_translate("MainWindow", "Пол:"))
-        self.label_3.setText(_translate("MainWindow", "Роль:"))
-        self.label_4.setText(_translate("MainWindow", "Пароль:"))
-        self.createUserButton.setText(_translate("MainWindow", "Создать пользователя"))
+        CreateUserWindow.setWindowTitle(_translate("CreateUserWindow", "Создание пользователя"))
+        self.label.setText(_translate("CreateUserWindow", "Имя:"))
+        self.label_2.setText(_translate("CreateUserWindow", "Пол:"))
+        self.label_3.setText(_translate("CreateUserWindow", "Роль:"))
+        self.label_4.setText(_translate("CreateUserWindow", "Пароль:"))
+        self.saveButton.setText(_translate("CreateUserWindow", "Создаь пользователя"))
 
 
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    CreateUserWindow = QtWidgets.QMainWindow()
+    ui = Ui_CreateUserWindow()
+    ui.setupUi(CreateUserWindow)
+    CreateUserWindow.show()
+    sys.exit(app.exec_())
